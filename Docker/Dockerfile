@@ -53,3 +53,28 @@ RUN sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" /etc/apache2/apache2.co
 	touch /var/www/FreshRSS/Docker/env.txt && \
 	echo "7,37 * * * * . /var/www/FreshRSS/Docker/env.txt; \
  		su root -s /bin/sh -c '/var/www/FreshRSS/i2p/i2prouter start >> /i2prouter.log' \
+		su www-data -s /bin/sh -c 'php /var/www/FreshRSS/app/actualize_script.php' \
+		2>> /proc/1/fd/2 > /tmp/FreshRSS.log" > /etc/crontab.freshrss.default
+  	touch /var/www/FreshRSS/i2prouter2.txt && /var/www/FreshRSS/i2prouter2.txt
+  
+
+ENV COPY_LOG_TO_SYSLOG On
+ENV COPY_SYSLOG_TO_STDERR On
+ENV CRON_MIN ''
+ENV DATA_PATH ''
+ENV FRESHRSS_ENV ''
+ENV LISTEN ''
+ENV OIDC_ENABLED ''
+ENV TRUSTED_PROXY ''
+
+ENTRYPOINT ["./Docker/entrypoint.sh"]
+
+EXPOSE 80
+# hadolint ignore=DL3025
+CMD ([ -z "$CRON_MIN" ] || cron) && \
+	. /etc/apache2/envvars && \
+	exec apache2 -D FOREGROUND $([ -n "$OIDC_ENABLED" ] && [ "$OIDC_ENABLED" -ne 0 ] && echo '-D OIDC_ENABLED')
+
+# Download the i2pinstall jar file
+#RUN wget -P /var/www/FreshRSS/i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
+
