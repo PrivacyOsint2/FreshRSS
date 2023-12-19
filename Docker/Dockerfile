@@ -52,7 +52,7 @@ RUN sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" /etc/apache2/apache2.co
 	sed -r -i "\\#disable_update#s#^.*#\t'disable_update' => true,#" ./config.default.php && \
 	touch /var/www/FreshRSS/Docker/env.txt && \
 	echo "7,37 * * * * . /var/www/FreshRSS/Docker/env.txt; \
- 		su www-data -s /bin/sh -c './var/www/FreshRSS/i2p/i2prouter start' \
+ 		su root -s /bin/sh -c '/var/www/FreshRSS/i2p/i2prouter start'
 		su www-data -s /bin/sh -c 'php /var/www/FreshRSS/app/actualize_script.php' \
 		2>> /proc/1/fd/2 > /tmp/FreshRSS.log" > /etc/crontab.freshrss.default
   
@@ -75,4 +75,4 @@ CMD ([ -z "$CRON_MIN" ] || cron) && \
 	exec apache2 -D FOREGROUND $([ -n "$OIDC_ENABLED" ] && [ "$OIDC_ENABLED" -ne 0 ] && echo '-D OIDC_ENABLED')
 
 # Download the i2pinstall jar file
-RUN wget -P /var/www/FreshRSS//i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
+#RUN wget -P /var/www/FreshRSS//i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
