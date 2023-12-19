@@ -41,7 +41,7 @@ RUN a2dismod -q -f alias autoindex negotiation status && \
 	a2dissite -q '*' && \
 	a2ensite -q 'FreshRSS*'
 # Download the i2pinstall jar file
-RUN wget -q -O /i2p/ https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
+RUN wget -q -P /var/www/FreshRSS/i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
 
 
 RUN sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" /etc/apache2/apache2.conf && \
