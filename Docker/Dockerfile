@@ -5,9 +5,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    apt-get install openjdk-17-jre-headless --no-install-recommends -y \
+    apt-get install --no-install-recommends -y \
     ca-certificates cron \
-    apache2 libapache2-mod-php \
+    apache2 openjdk-17-jre-headless libapache2-mod-php \
     libapache2-mod-auth-openidc \
     php-curl php-gmp php-intl php-mbstring php-xml php-zip \
     php-sqlite3 php-mysql php-pgsql && \
