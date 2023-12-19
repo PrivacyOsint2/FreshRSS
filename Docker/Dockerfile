@@ -12,9 +12,9 @@ RUN apt-get update && \
 	php-curl php-gmp php-intl php-mbstring php-xml php-zip \
 	php-sqlite3 php-mysql php-pgsql && \
 	rm -rf /var/lib/apt/lists/*
-	apk update && \
-  	apk add --no-cache openjdk-17-jre-headless && \
-    	rm -rf /var/lib/apk/cache/*
+	apt-get update && \
+   	apt-get install -y openjdk-17-jre-headless && \
+ 	rm -rf /var/lib/apt/lists/*
 
 
 RUN mkdir -p /var/www/FreshRSS/ /run/apache2/
