@@ -11,7 +11,7 @@ RUN apt-get update && \
     libapache2-mod-auth-openidc \
     php-curl php-gmp php-intl php-mbstring php-xml php-zip \
     php-sqlite3 php-mysql php-pgsql && \
-    rm -rf /var/lib/apt/lists/*
+
 
 
 RUN mkdir -p /var/www/FreshRSS/ /run/apache2/
