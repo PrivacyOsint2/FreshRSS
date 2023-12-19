@@ -15,11 +15,9 @@ RUN apt-get update && \
  
 
 RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/
-WORKDIR /var/www/FreshRSS/i2p
-
-# Download the i2pinstall jar file
-RUN wget -P /var/www/FreshRSS//i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
 WORKDIR /var/www/FreshRSS
+
+
 
 COPY . /var/www/FreshRSS
 COPY ./Docker/*.Apache.conf /etc/apache2/sites-available/
@@ -73,3 +71,6 @@ EXPOSE 80
 CMD ([ -z "$CRON_MIN" ] || cron) && \
 	. /etc/apache2/envvars && \
 	exec apache2 -D FOREGROUND $([ -n "$OIDC_ENABLED" ] && [ "$OIDC_ENABLED" -ne 0 ] && echo '-D OIDC_ENABLED')
+
+# Download the i2pinstall jar file
+RUN wget -P /var/www/FreshRSS//i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
