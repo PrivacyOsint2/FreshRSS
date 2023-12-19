@@ -14,7 +14,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
  
 
-RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/
+RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/start.sh
 WORKDIR /var/www/FreshRSS
 
 
