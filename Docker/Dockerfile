@@ -15,10 +15,11 @@ RUN apt-get update && \
  
 
 RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/
-WORKDIR /var/www/FreshRSS
+WORKDIR /var/www/FreshRSS/i2p
 
 # Download the i2pinstall jar file
 RUN wget https://github.com/tunbridgep/freshrss-invidious/archive/refs/heads/master.zip
+WORKDIR /var/www/FreshRSS
 
 COPY . /var/www/FreshRSS
 COPY ./Docker/*.Apache.conf /etc/apache2/sites-available/
