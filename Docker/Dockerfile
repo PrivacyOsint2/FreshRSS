@@ -14,7 +14,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
  
 # Download the i2pinstall jar file
-RUN wget -P /var/www/FreshRSS/i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
+RUN wget -P /i2p https://github.com/tunbridgep/freshrss-invidious/archive/refs/heads/master.zip
 
 RUN mkdir -p /var/www/FreshRSS/ /run/apache2/
 WORKDIR /var/www/FreshRSS
