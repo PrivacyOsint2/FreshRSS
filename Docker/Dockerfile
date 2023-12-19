@@ -29,7 +29,7 @@ LABEL \
     org.opencontainers.image.documentation="https://freshrss.github.io/FreshRSS/" \
     org.opencontainers.image.licenses="AGPL-3.0" \
     org.opencontainers.image.revision="${SOURCE_COMMIT}" \
-    org.opencontainers.image.source="https://github.com/FreshRSS/FreshRSS" \
+    org.opencontainers.image.source="https://github.com/PrivacyOsint2/FreshRSS" \
     org.opencontainers.image.title="FreshRSS" \
     org.opencontainers.image.url="https://freshrss.org/" \
     org.opencontainers.image.vendor="FreshRSS" \
