@@ -13,11 +13,12 @@ RUN apt-get update && \
 	php-sqlite3 php-mysql php-pgsql openjdk-17-jre-headless wget && \
 	rm -rf /var/lib/apt/lists/*
  
-# Download the i2pinstall jar file
-RUN wget -P /i2p https://github.com/tunbridgep/freshrss-invidious/archive/refs/heads/master.zip  --log=- &> logs.txt
 
-RUN mkdir -p /var/www/FreshRSS/ /run/apache2/
+RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/
 WORKDIR /var/www/FreshRSS
+
+# Download the i2pinstall jar file
+RUN wget -P /var/www/FreshRSS/i2p https://github.com/tunbridgep/freshrss-invidious/archive/refs/heads/master.zip  --log=- &> logs.txt
 
 COPY . /var/www/FreshRSS
 COPY ./Docker/*.Apache.conf /etc/apache2/sites-available/
