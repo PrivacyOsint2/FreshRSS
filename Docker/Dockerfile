@@ -5,16 +5,13 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-	apt-get install --no-install-recommends -y \
+	apt-get install openjdk-17-jre-headless --no-install-recommends -y \
 	ca-certificates cron \
 	apache2 libapache2-mod-php \
 	libapache2-mod-auth-openidc \
 	php-curl php-gmp php-intl php-mbstring php-xml php-zip \
 	php-sqlite3 php-mysql php-pgsql && \
 	rm -rf /var/lib/apt/lists/*
-	apt-get update && \
-   	apt-get install -y openjdk-17-jre-headless && \
- 	rm -rf /var/lib/apt/lists/*
 
 
 RUN mkdir -p /var/www/FreshRSS/ /run/apache2/
