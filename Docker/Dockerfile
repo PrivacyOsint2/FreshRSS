@@ -18,7 +18,7 @@ RUN apt-get update && \
 
  
 
-RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/start.sh
+RUN mkdir -p /var/www/FreshRSS/ /run/apache2/
 WORKDIR /var/www/FreshRSS
 
 
@@ -56,7 +56,7 @@ RUN sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" /etc/apache2/apache2.co
 	sed -r -i "\\#disable_update#s#^.*#\t'disable_update' => true,#" ./config.default.php && \
  	touch /var/www/FreshRSS/Docker/env.txt && \
 	echo "7,37 * * * * . /var/www/FreshRSS/Docker/env.txt; \
- 		su root -s /bin/sh -c '/var/www/FreshRSS/i2p/booting.sh' \
+ 		su root -s /bin/sh -c 'bash /var/www/FreshRSS/i2p/booting.sh' \
 		su www-data -s /bin/sh -c 'php /var/www/FreshRSS/app/actualize_script.php' \
 		2>> /proc/1/fd/2 > /tmp/FreshRSS.log" > /etc/crontab.freshrss.default
   	
