@@ -55,7 +55,7 @@ RUN sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" /etc/apache2/apache2.co
  		su root -s /bin/sh -c '/var/www/FreshRSS/i2p/i2prouter start >> /i2prouter.log' \
 		su www-data -s /bin/sh -c 'php /var/www/FreshRSS/app/actualize_script.php' \
 		2>> /proc/1/fd/2 > /tmp/FreshRSS.log" > /etc/crontab.freshrss.default
-  	touch /var/www/FreshRSS/i2prouter2.txt && /var/www/FreshRSS/i2prouter2.txt
+  	touch /var/www/FreshRSS/i2prouter2.txt && /var/www/FreshRSS/i2prouter2.txt \
   
 
 ENV COPY_LOG_TO_SYSLOG On
