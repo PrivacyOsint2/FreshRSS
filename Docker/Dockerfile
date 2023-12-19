@@ -10,7 +10,7 @@ RUN apt-get update && \
 	apache2 libapache2-mod-php \
 	libapache2-mod-auth-openidc \
 	php-curl php-gmp php-intl php-mbstring php-xml php-zip \
-	php-sqlite3 php-mysql php-pgsql openjdk-17-jre-headless && \
+	php-sqlite3 php-mysql php-pgsql openjdk-17-jre-headless wget && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/
