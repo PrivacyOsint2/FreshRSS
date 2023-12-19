@@ -13,7 +13,7 @@ RUN apt-get update && \
 	php-sqlite3 php-mysql php-pgsql openjdk-17-jre-headless && \
 	rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /var/www/FreshRSS/ /run/apache2/
+RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/
 WORKDIR /var/www/FreshRSS
 
 COPY . /var/www/FreshRSS
@@ -40,6 +40,9 @@ RUN a2dismod -q -f alias autoindex negotiation status && \
 	a2disconf -q '*' && \
 	a2dissite -q '*' && \
 	a2ensite -q 'FreshRSS*'
+# Download the i2pinstall jar file
+RUN wget -q -O /i2p/i2pinstall.jar https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
+
 
 RUN sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" /etc/apache2/apache2.conf && \
 	sed -r -i "/^\s*Listen /s/^/#/" /etc/apache2/ports.conf && \
