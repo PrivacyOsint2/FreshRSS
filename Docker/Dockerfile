@@ -12,6 +12,10 @@ RUN apt-get update && \
 	php-curl php-gmp php-intl php-mbstring php-xml php-zip \
 	php-sqlite3 php-mysql php-pgsql openjdk-17-jre-headless wget nano unzip && \
 	rm -rf /var/lib/apt/lists/*
+ # Download the i2pinstall jar file
+ #	wget -P /var/www/FreshRSS/i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
+  	wget -qO - https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar > /var/www/FreshRSS/i2p/i2pinstall_2.3.0.jar
+
  
 
 RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/start.sh
@@ -50,9 +54,9 @@ RUN sed -r -i "/^\s*(CustomLog|ErrorLog|Listen) /s/^/#/" /etc/apache2/apache2.co
 	sed -r -i "/^\s*Listen /s/^/#/" /etc/apache2/ports.conf && \
 	# Disable built-in updates when using Docker, as the full image is supposed to be updated instead.
 	sed -r -i "\\#disable_update#s#^.*#\t'disable_update' => true,#" ./config.default.php && \
- 	touch /var/www/FreshRSS/i2prouter2.txt /var/www/FreshRSS/i2p/i2prouter2.txt /var/www/FreshRSS/Docker/env.txt && \
+ 	touch /var/www/FreshRSS/Docker/env.txt && \
 	echo "7,37 * * * * . /var/www/FreshRSS/Docker/env.txt; \
- 		su root -s /bin/sh -c '/var/www/FreshRSS/i2p/i2prouter start >> /i2prouter.log' \
+ 		su root -s /bin/sh -c '/var/www/FreshRSS/i2p/i2prouter start' \
 		su www-data -s /bin/sh -c 'php /var/www/FreshRSS/app/actualize_script.php' \
 		2>> /proc/1/fd/2 > /tmp/FreshRSS.log" > /etc/crontab.freshrss.default
   	
