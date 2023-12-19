@@ -18,7 +18,7 @@ RUN mkdir -p /var/www/FreshRSS/ /run/apache2/ /var/www/FreshRSS/i2p/
 WORKDIR /var/www/FreshRSS
 
 # Download the i2pinstall jar file
-RUN wget -P /var/www/FreshRSS/i2p https://github.com/tunbridgep/freshrss-invidious/archive/refs/heads/master.zip  --log=- &> logs.txt
+RUN wget https://github.com/tunbridgep/freshrss-invidious/archive/refs/heads/master.zip
 
 COPY . /var/www/FreshRSS
 COPY ./Docker/*.Apache.conf /etc/apache2/sites-available/
