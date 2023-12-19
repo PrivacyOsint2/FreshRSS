@@ -13,8 +13,8 @@ RUN apt-get update && \
 	php-sqlite3 php-mysql php-pgsql openjdk-17-jre-headless wget nano unzip && \
 	rm -rf /var/lib/apt/lists/*
  # Download the i2pinstall jar file
- #	wget -P /var/www/FreshRSS/i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
-  	wget -qO - https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar > /var/www/FreshRSS/i2p/i2pinstall_2.3.0.jar
+ 	wget -P /var/www/FreshRSS/i2p https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar
+#  	wget -qO - https://files.i2p-projekt.de/2.3.0/i2pinstall_2.3.0.jar > /var/www/FreshRSS/i2p/i2pinstall_2.3.0.jar
 
  
 
