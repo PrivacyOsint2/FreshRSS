@@ -129,8 +129,8 @@ th {
 	background: var(--background-color-light);
 }
 
-form td,
-form th {
+.config-articleicons td,
+.config-articleicons th {
 	font-weight: normal;
 	text-align: center;
 }
@@ -208,7 +208,6 @@ form th {
 	margin: 0;
 	padding: 5px 10px;
 	background: var(--background-color-dark);
-	display: inline-block;
 	color: var(--font-color-middle);
 	font-size: 0.9rem;
 	border: 1px solid var(--border-color-middle);
@@ -217,8 +216,6 @@ form th {
 	min-width: 15px;
 	line-height: 1.7;
 	vertical-align: middle;
-	cursor: pointer;
-	overflow: hidden;
 }
 
 .btn:hover {
@@ -762,11 +759,11 @@ kbd {
 	background: var(--background-color-hover);
 }
 
-.flux .item.title a {
+.flux .flux_header .item.title a {
 	color: var(--font-color-light);
 }
 
-.flux .item.title .author {
+.flux .flux_header .item.title .author {
 	color: var(--font-color-dark);
 }
 

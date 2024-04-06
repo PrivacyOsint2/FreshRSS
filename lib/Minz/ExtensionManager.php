@@ -118,6 +118,7 @@ final class Minz_ExtensionManager {
 	 * extension.php should contain at least a class named <name>Extension where
 	 * <name> must match with the entry point in metadata.json. This class must
 	 * inherit from Minz_Extension class.
+	 * @throws Minz_ConfigurationNamespaceException
 	 */
 	public static function init(): void {
 		self::reset();
@@ -275,7 +276,7 @@ final class Minz_ExtensionManager {
 			return;
 		}
 		foreach ($ext_list as $ext_name => $ext_status) {
-			if ($ext_status) {
+			if ($ext_status && is_string($ext_name)) {
 				self::enable($ext_name, $onlyOfType);
 			}
 		}

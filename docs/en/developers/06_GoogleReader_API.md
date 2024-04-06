@@ -29,6 +29,7 @@ Then point your mobile application to the `greader.php` address (e.g. `https://f
 |[EasyRSS](https://github.com/Alkarex/EasyRSS)                          |Android                |[GPLv3](https://github.com/Alkarex/EasyRSS/blob/master/license.txt) ([F-Droid](https://f-droid.org/packages/org.freshrss.easyrss/))|
 |[Readrops](https://github.com/readrops/Readrops) |Android                  |[GPLv3](https://github.com/readrops/Readrops/blob/develop/LICENSE)                                             |
 |[Fluent Reader Lite](https://hyliu.me/fluent-reader-lite/) |Android, iOS            |[BSD-3](https://github.com/yang991178/fluent-reader-lite)                                             |
+|[Read You](https://github.com/Ashinch/ReadYou/)                                     |Android              |[GPLv3](https://github.com/Ashinch/ReadYou/blob/main/LICENSE)|
 |[FocusReader](https://play.google.com/store/apps/details?id=allen.town.focus.reader) |Android                  |Closed Source(Free)                                              |
 |[Newsflash](https://gitlab.com/news-flash/news_flash_gtk/)                          |Linux                |[GPLv3](https://gitlab.com/news-flash/news_flash_gtk/) |
 |[lire](https://lireapp.com/)                                                        |iOS, macOS           |Closed Source                                             |
@@ -67,6 +68,10 @@ curl -H "Authorization:GoogleLogin auth=alice/8e6845e089457af25303abc6f53356eb60
 # Get articles, piped to jq for easier JSON reading
 curl -s -H "Authorization:GoogleLogin auth=alice/8e6845e089457af25303abc6f53356eb60bdb5f8" \
   'https://freshrss.example.net/api/greader.php/reader/api/0/stream/contents/reading-list' | jq .
+
+# Unsubscribe from a feed
+curl -H "Authorization:GoogleLogin auth=alice/8e6845e089457af25303abc6f53356eb60bdb5f8" \
+  -d 'ac=unsubscribe&s=feed/52' 'https://freshrss.example.net/api/greader.php/reader/api/0/subscription/edit'
 ```
 
 * [Source code of our API implementation](https://github.com/FreshRSS/FreshRSS/blob/edge/p/api/greader.php)

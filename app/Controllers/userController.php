@@ -9,7 +9,7 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 	 * The username is also used as folder name, file name, and part of SQL table name.
 	 * '_' is a reserved internal username.
 	 */
-	public const USERNAME_PATTERN = '([0-9a-zA-Z_][0-9a-zA-Z_.@-]{1,38}|[0-9a-zA-Z])';
+	public const USERNAME_PATTERN = '([0-9a-zA-Z_][0-9a-zA-Z_.@\-]{1,38}|[0-9a-zA-Z])';
 
 	public static function checkUsername(string $username): bool {
 		return preg_match('/^' . self::USERNAME_PATTERN . '$/', $username) === 1;
@@ -126,7 +126,7 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 				$email,
 				$passwordPlain,
 				[
-					'token' => Minz_Request::paramString('token') ?: null,
+					'token' => Minz_Request::paramString('token'),
 				]
 			);
 
@@ -208,7 +208,11 @@ class FreshRSS_user_Controller extends FreshRSS_ActionController {
 		}
 	}
 
-	/** @param array<string,mixed> $userConfigOverride */
+	/**
+	 * @param array<string,mixed> $userConfigOverride
+	 * @throws Minz_ConfigurationNamespaceException
+	 * @throws Minz_PDOConnectionException
+	 */
 	public static function createUser(string $new_user_name, ?string $email, string $passwordPlain,
 		array $userConfigOverride = [], bool $insertDefaultFeeds = true): bool {
 		$userConfig = [];

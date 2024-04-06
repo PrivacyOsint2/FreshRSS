@@ -83,8 +83,8 @@ th {
 	background: #f6f6f6;
 }
 
-form td,
-form th {
+.config-articleicons td,
+.config-articleicons th {
 	font-weight: normal;
 	text-align: center;
 }
@@ -176,7 +176,6 @@ form th {
 	margin: 0;
 	padding: 5px 10px;
 	background: #3498db;
-	display: inline-block;
 	color: #fff;
 	font-size: 0.9rem;
 	border: none;
@@ -187,8 +186,6 @@ form th {
 	min-width: 15px;
 	line-height: 25px;
 	vertical-align: middle;
-	cursor: pointer;
-	overflow: hidden;
 }
 
 .btn:hover {
